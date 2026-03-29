@@ -1,0 +1,41 @@
+# ----- user settings -----
+set ip_name      my_axi_slave
+set ip_root      [file normalize "./ip_pkg_src/my_axi_slave"]
+set pkg_proj_dir [file normalize "./_pkg_tmp_my_axi_slave"]
+set part_name    xczu7ev-ffvc1156-2-e
+
+# ----- clean temp packaging workspace -----
+if {[file exists $pkg_proj_dir]} {
+    file delete -force $pkg_proj_dir
+}
+file mkdir $pkg_proj_dir
+
+# ----- create tiny standalone project -----
+create_project ${ip_name}_pkg $pkg_proj_dir -part $part_name -force
+
+# Add ONLY the owned source files
+add_files -norecurse [list \
+    [file join $ip_root "hdl/proto_mem_v4_0.vhd"] \
+    [file join $ip_root "hdl/proto_mem_v3_0_S00_AXI.vhd"] \
+    [file join $ip_root "hdl/mem_test_module_for_v4_0.vhd"] \
+    [file join $ip_root "ip/blk_true_dual_port_mem_gen_2.xci"] \
+]
+
+update_compile_order -fileset sources_1
+
+# ----- package into the SAME owned directory -----
+ipx::package_project \
+    -root_dir $ip_root \
+    -vendor user.org \
+    -library user \
+    -taxonomy /UserIP \
+    -import_files \
+    -set_current true
+
+# Optional but helpful metadata
+set core [ipx::current_core]
+set_property name $ip_name $core
+set_property version 1.0 $core
+ipx::save_core $core
+
+puts "Packaged IP at: $ip_root"

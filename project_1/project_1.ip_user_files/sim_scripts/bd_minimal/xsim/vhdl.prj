@@ -1,0 +1,9 @@
+vhdl xil_defaultlib  \
+"../../../bd/bd_minimal/ip/bd_minimal_proc_sys_reset_0_0/sim/bd_minimal_proc_sys_reset_0_0.vhd" \
+"../../../bd/bd_minimal/ip/bd_minimal_smartconnect_0_0/bd_0/ip/ip_1/sim/bd_fc8c_psr_aclk_0.vhd" \
+"../../../bd/bd_minimal/ipshared/4ea7/hdl/mem_test_module_for_v4_0.vhd" \
+"../../../bd/bd_minimal/ipshared/4ea7/hdl/proto_mem_v3_0_S00_AXI.vhd" \
+"../../../bd/bd_minimal/ipshared/4ea7/hdl/proto_mem_v4_0.vhd" \
+"../../../bd/bd_minimal/ip/bd_minimal_my_axi_slave_0_0/sim/bd_minimal_my_axi_slave_0_0.vhd" \
+
+nosort

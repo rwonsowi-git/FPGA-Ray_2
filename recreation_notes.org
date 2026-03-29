@@ -1,0 +1,107 @@
+Note: Save often!!!
+
+* Vivado
+  Project Summary window will show when synthesis, implementaion, and bitstream generation are being performed
+
+** Create Project
+  Part #: xczu4ev-sfvc784-1-e
+  Do not check "Project is an extensible vitis platform"
+
+** Create Block Design
+  Design name: bd_minimal
+  Add IP: Zynq UltraScale+ MPSoc
+      Double click to Re-customize IP
+      On left, select "I/O Configuration"
+         Low Speed, I/O Peripherals, UART
+	 Enable UART 0
+      On left, select "Clock Configuration"
+         Output Clocks, Low Power Domain Clocks, PL Fabric Clocks
+	 Enable PL0, 100 MHz Requested Freq
+      On left, select "PS-PL Configuration"
+         PS-PL Interfaces, Master Interface
+	 Enable AXI HPM0 FPD
+	 Disable AXI HPM0 LPD
+      Click "OK"
+      Connect zynq_ultra_ps_e_0 pl_clk0 to zynq_ultra_ps_e_0 maxihpm0_fpd_aclk
+  Add IP: Processor System Reset
+      Connect zynq_ultra_ps_e_0 pl_resetn0 to proc_sys_reset_0 ext_reset_in
+      Connect zynq_ultra_ps_e_0 pl_clk0 to proc_sys_reset_0 pl_clk0
+  Add IP: Utility Vector Logic
+      Double click to Re-customize IP
+      Change C_SIZE to 1
+      Change C_OPERATION to not
+      Connect proc_sys_reset_0 peripheral_reset[0:0] to util_vector_logic_0 Op1[0:0]
+  Add IP: AXI SmartConnect
+      Connect zynq_ultra_ps_e_0 pl_clk0 to smartconnect_0 aclk
+      Connect zynq_ultra_ps_e_0 M_AXI_HPM0_FPD to smartconnect_0 S00_AXI
+      Connect util_vector_logic_0 Res[0:0] to smartconnect_0 aresetn
+
+** Adding proto_mem_v4_0_v1_0
+  Note: Can recreate by running package_my_axi_slave.tcl 
+  Folder ip_pkg_src is in root of repo
+  Copy folder ip_pkg_src to top project directory
+  Tools -> Settings -> IP, expand -> Repository
+  Click Add(+)
+  Navigate to ip_pkg_src/My_axi_slave
+  Click "Select" then "Apply" then "OK"
+  Add IP: proto_mem_v4_0_v1_0
+      Connect zynq_ultra_ps_e_0 pl_clk0 to my_axi_slave_0 s00_axi_aclk
+      Connect util_vector_logic_0 Res[0:0] to my_axi_slave_0 s00_axi_aresetn
+      Connect smartconnect_0 M00_AXI to my_axi_slave_0 s00_axi
+
+** Adding Block Memory Generator
+  On the left pane, "Flow Navigator," click "IP Catalog"
+  Vivado Repository, Memories & Storage Elements, RAMS & ROMs & BRAMs
+  Double click "Block Memory Generator"
+  Click "Customize IP"
+  Change "Component Name" to blk_true_dual_port_mem_gen_2
+    I believe this is because it is the name hardcoded in the vhdl files
+  Basic Tab
+    Memory Type: True Dual Port RAM
+    Port A Options: Write Width  80
+                    Read  Width  80
+		    Write Depth 4096
+		    Read  Depth 4096
+    Port B Options: Should inherit Port A Options
+  Click "OK"
+  Click "Generate"
+
+** Address Editor
+   Assign all
+
+** Create Bitstream
+  Note: Following these steps will automatically validate design
+  In the "Sources" window, under "Design Sources" you should see the block diagram
+  Right click block diagram and select "Generate Output Products"
+  Click "Generate"
+  Right click block diagram and select "Create HDL Wrapper"
+  Select "Let Vivado manage wrapper and auto-update" and click "OK"
+  In the "Sources" window, under "Design Sources" you should see the block diagram
+  Right click block diagram and select "Set as Top"
+    Note: if it is grayed out, it already is set as top
+  On the left pane, "Flow Navigator," click "Run Synthesis"
+  Click "OK"
+  When done a window will pop up with "Run Implementation" selected
+  Click "OK"
+  Another window will pop up, click "OK"
+  When done a window will pop up with "Open Implemented Design" selected
+  Change that to "Generate Bitstream"
+  Click "OK"
+  Another window will pop up, click "OK"
+  When done a window will pop up with "Open Implemented Design" selected, again
+  Click "Cancel"
+
+** Exporting Hardware
+  File -> Export -> Export Hardware
+  Following the wizard
+    Next
+    Select "Include bitstream"
+    Next
+    Next
+    Finish
+
+** Completion
+  If done, there will be an xsa file in the root project directory
+
+* Vitis
+** Create Platform Project

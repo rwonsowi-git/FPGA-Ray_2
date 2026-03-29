@@ -1,0 +1,22 @@
+* Create Project
+  Part #: xczu4ev-sfvc784-1-e
+  Do not check "Project is an extensible vitis platform"
+
+* Create Block Design
+  Design name: bd_minimal
+  Add IP: Zynq UltraScale+ MPSoc
+      Double click to Re-customize IP
+      On left, select "I/O Configuration"
+         Low Speed, I/O Peripherals, UART
+	 Enable UART 0
+      On left, select "Clock Configuration"
+         Output Clocks, Low Power Domain Clocks, PL Fabric Clocks
+	 Enable PL0, 100 MHz Requested Freq
+      On left, select "PS-PL Configuration"
+         PS-PL Interfaces, Master Interface
+	 Enable AXI HPM0 FPD
+	 Disable AXI HPM0 LPD
+      Click "OK"
+  Add IP: Processor System Reset
+      Connect zynq_ultra_ps_e_0 pl_resetn0 to proc_sys_reset_0 ext_reset_in
+      Connect zynq_ultra_ps_e_0 pl_clk0 to proc_sys_reset_0 pl_clk0

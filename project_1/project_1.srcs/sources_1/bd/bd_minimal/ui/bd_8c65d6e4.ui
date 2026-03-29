@@ -1,0 +1,23 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.21974",
+   "Default View_TopLeft":"-490,-631",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
+#  -string -flagsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x -820 -y -430 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 2 -x -330 -y -410 -defaultsOSRD
+preplace inst smartconnect_0 -pg 1 -lvl 2 -x -330 -y -240 -defaultsOSRD
+preplace inst util_vector_logic_0 -pg 1 -lvl 3 -x 50 -y -410 -defaultsOSRD
+preplace inst my_axi_slave_0 -pg 1 -lvl 3 -x 50 -y -220 -defaultsOSRD
+preplace netloc proc_sys_reset_0_peripheral_reset 1 2 1 N -410
+preplace netloc util_vector_logic_0_Res 1 1 3 -500 -510 -160 -470 200
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 3 -1120 -520 -510 -520 -150
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 1 1 N -430
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 -520 -450n
+preplace netloc smartconnect_0_M00_AXI 1 2 1 N -240
+levelinfo -pg 1 -1140 -820 -330 50 1060
+pagesize -pg 1 -db -bbox -sgen -1140 -590 1060 180
+"
+}
+0

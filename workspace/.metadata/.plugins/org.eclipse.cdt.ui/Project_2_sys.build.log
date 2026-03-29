@@ -1,0 +1,10 @@
+21:07:01 **** Build of configuration Debug for project Project_2_sys ****
+make all 
+Generating bif file for the system project
+generate_system_bif.bat 62494 C:/Users/Randy/Desktop/repos/FPGA-Ray_2/workspace/Project_2/export/Project_2/Project_2.xpfm standalone_domain C:/Users/Randy/Desktop/repos/FPGA-Ray_2/workspace/Project_2_sys/Debug/system.bif
+sdcard_gen --xpfm C:/Users/Randy/Desktop/repos/FPGA-Ray_2/workspace/Project_2/export/Project_2/Project_2.xpfm --sys_config Project_2 --bif C:/Users/Randy/Desktop/repos/FPGA-Ray_2/workspace/Project_2_sys/Debug/system.bif --bitstream C:/Users/Randy/Desktop/repos/FPGA-Ray_2/workspace/Project_2_app/_ide/bitstream/design_1_wrapper.bit --elf C:/Users/Randy/Desktop/repos/FPGA-Ray_2/workspace/Project_2_app/Debug/Project_2_app.elf,psu_cortexa53_0
+ELF does not exist: C:/Users/Randy/Desktop/repos/FPGA-Ray_2/workspace/Project_2_app/Debug/Project_2_app.elf
+make: *** [makefile:37: package] Error 1
+
+21:07:02 Build Finished (took 1s.397ms)
+

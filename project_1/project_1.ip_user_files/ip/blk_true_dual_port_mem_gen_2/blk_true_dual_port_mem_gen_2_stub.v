@@ -1,0 +1,32 @@
+// Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+// --------------------------------------------------------------------------------
+// Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+// Date        : Sat Mar 21 14:27:20 2026
+// Host        : DESKTOP-VQ4ABFJ running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode synth_stub
+//               c:/Users/Randy/Desktop/repos/FPGA-Ray_2/project_1/project_1.gen/sources_1/ip/blk_true_dual_port_mem_gen_2/blk_true_dual_port_mem_gen_2_stub.v
+// Design      : blk_true_dual_port_mem_gen_2
+// Purpose     : Stub declaration of top-level module interface
+// Device      : xczu4ev-sfvc784-1-e
+// --------------------------------------------------------------------------------
+
+// This empty module with port declaration file causes synthesis tools to infer a black box for IP.
+// The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
+// Please paste the declaration into a Verilog source file or add the file as an additional source.
+(* x_core_info = "blk_mem_gen_v8_4_5,Vivado 2022.2" *)
+module blk_true_dual_port_mem_gen_2(clka, ena, wea, addra, dina, douta, clkb, enb, web, addrb, 
+  dinb, doutb)
+/* synthesis syn_black_box black_box_pad_pin="clka,ena,wea[0:0],addra[11:0],dina[79:0],douta[79:0],clkb,enb,web[0:0],addrb[11:0],dinb[79:0],doutb[79:0]" */;
+  input clka;
+  input ena;
+  input [0:0]wea;
+  input [11:0]addra;
+  input [79:0]dina;
+  output [79:0]douta;
+  input clkb;
+  input enb;
+  input [0:0]web;
+  input [11:0]addrb;
+  input [79:0]dinb;
+  output [79:0]doutb;
+endmodule
